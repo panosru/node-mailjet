@@ -3,3 +3,5 @@
 node_modules
 build
 *.node
+.idea
+atlassian-ide-plugin.xml
