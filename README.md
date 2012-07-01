@@ -1,3 +1,6 @@
+[![Build Status](https://secure.travis-ci.org/panosru/node-mailjet.png)](http://travis-ci.org/panosru/node-mailjet)
+
+
 Mailjet is a real-time Cloud Emailing platform: scalable, agile and flexible!
 =======
 
