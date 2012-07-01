@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+/*
+ * Linting tool, using jshint with options from ../jshint.json
+ */
+ 
+// Allow console to print & inspect data, then exit
+console.exit = function(msg) {
+  if (typeof msg == 'string') console.log(msg);
+  else console.dir(msg);
+  process.exit();
+}
+ 
+var path = require('path'),
+    util = require('util'),
+    fs = require('fs'),
+    cp = require('child_process');
+
+// Framework path
+var rootPath = path.dirname(__filename);
+
+// Config file
+var config = process.env.JSHINT_CONFIG || path.resolve(rootPath, '../jshint.json');
+
+// Command, using local jshint library
+var cmd = path.resolve(rootPath, '../node_modules/jshint/bin/hint'),
+    args = process.argv.slice(2).concat(['--config', config]);
+
+// Output colors
+var colorRegex = /(\n)?(.*?): line (\d+), (.*?), (.*?)(\n)/g
+
+// Functions
+function logger(data) {
+  data = data.toString('utf-8');
+  if (data.indexOf('Usage: jshint path path2 [options]') >= 0) {
+    console.log(util.format("\nUsage: %s path path2\n", path.basename(process.argv[1])));
+  } else {
+    if (process.env.NODE_ENV == 'lintall') {
+      console.log(util.format('\n♢ \u001b[1;30m%s\u001b[0m', process.argv[2]));
+      data = '\n' + data.trim();
+    } else data = '\n' + data;
+    console.log(colorize(data));
+  }
+}
+
+function colorize(data) {
+  return data.replace(colorRegex, '$1➜ \u001b[0;30m$2:\u001b[0m\u001b[1;30m$3 \u001b[0;31m$5\u001b[0m$6');
+}
+
+// Detect scan
+var p = path.resolve(rootPath, '../');
+
+process.chdir(p);
+
+// Run command w/args
+var jshint = cp.spawn(cmd, args);
+
+jshint.stdout
+  .on('data', logger)
+  .on('error', logger);

@@ -11,10 +11,12 @@
   "main"            : "./index.js",
   "dependencies"    : {},
   "devDependencies" : {
-    "vows"    : ">= 0.6.3"
+    "jshint"  : "= 0.7.1",
+    "chai"    : "= 1.1.0",
+    "vows"    : "= 0.6.3"
   },
   "scripts"         : {
-    "test"    : "vows --spec --isolate"
+    "test"    : "vows --spec --isolate test/tests/*"
   },
   "engines"         : {
     "node"    : ">= 0.4.0"

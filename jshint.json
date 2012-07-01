@@ -1,0 +1,48 @@
+{
+
+  // http://www.jshint.com/options/
+
+  "predef": ["main"],
+
+  // Enforcing
+
+  "bitwise": true,
+  "curly": false,
+  "eqeqeq": false,
+  "forin": false,
+  "immed": true,
+  "latedef": false,
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonew": false,
+  "plusplus": false,
+  "regexp": false,
+  "undef": true,
+  "trailing": false,
+
+  // Relaxing
+
+  "asi": true,
+  "eqnull": true,
+  "es5": true,
+  "funcscope": true,
+  "lastsemic": false,
+  "multistr": true,
+  "supernew": true,
+  "regexdash": false,
+  "laxbreak": true,
+  "expr": true,
+  "loopfunc": true,
+  "proto": true,
+
+  // Environments
+
+  "devel": true,
+  "node": true,
+
+  // Legacy
+
+  "passfail": false
+
+}
