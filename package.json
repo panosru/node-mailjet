@@ -16,7 +16,7 @@
     "vows"    : "= 0.6.3"
   },
   "scripts"         : {
-    "test"    : "vows --spec --isolate test/tests/*"
+    "test"    : "make"
   },
   "engines"         : {
     "node"    : ">= 0.4.0"
